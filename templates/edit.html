@@ -1,0 +1,71 @@
+<!-- extend base layout -->
+{% extends "layout.html" %}
+{% set images = [
+  ('one_main_twentyone_pips.png'),
+  ('one_main_seven_pips.png'),
+  ('one_main_zero_pips.png')] %}
+
+{% block content %}
+
+<div class="row">
+  <div class="col-md-2">
+    <div class="list-group">
+      <a class="list-group-item" href="/portal" data-toggle="modal"> <i class="fa fa-home fa-fw" aria-hidden="true"></i>&nbsp; Home</a>
+    </div>
+  </div>
+  <div class="col-md-4">
+  <form action="" method="post" name="edit">
+      {{form.hidden_tag()}}
+
+    <div class="table-responsive">
+      <table class="table table-striped">
+          <th colspan="2">PINS:</th>
+          <tr>
+              <td>Host PIN:</td>
+              <td>{{ form.pin(size=5) }}</td>
+              {%if form.allow_guests %}
+              <tr>
+                <td>Guest PIN:</td>
+
+              <td>{{ form.guest_pin(size=5) }}</td>
+              </tr>
+              {%endif%}
+          </tr>
+
+          <tr>
+            <td><b>Allow Guests</b></td><td>{{ form.allow_guests}}</td>
+          </tr>
+          <tr>
+            <td><b>Guests Can Present</b></td><td>{{ form.guests_can_present}}</td>
+          </tr>   
+          <tr>
+            <td><b>Show Speaker name text</b></td><td>{{ form.enable_overlay_text}}</td>
+          </tr>              
+          </table>
+          <!-- <b>Theme</b> {{ form.ivr_theme }} -->
+        </div>
+          <hr>
+          <input type="submit" value="Save Changes">
+          <p><i>Note: it can take up to a minute for changes to take effect.</i></p>
+
+  </div>
+    <div class="col-md-6">
+      <h4 style="text-align: center;">Conference View:</h4>
+    </div>
+    <div class="cc-selector">
+      <div class="col-md-2">
+       <input id="one_main_twentyone_pips" type="radio" name="host_view" value="one_main_twentyone_pips" {{"checked" if form.host_view.data == "one_main_twentyone_pips"}} />
+       <label class="drinkcard-cc one_main_twentyone_pips" for="one_main_twentyone_pips"></label>
+       <input id="two_mains_twentyone_pips" type="radio" name="host_view" value="two_mains_twentyone_pips" {{"checked" if form.host_view.data == "two_mains_twentyone_pips"}}/>
+       <label class="drinkcard-cc two_mains_twentyone_pips"for="two_mains_twentyone_pips"></label>
+      </div>
+      <div class="col-md-2">
+       <input id="one_main_zero_pips" type="radio" name="host_view" value="one_main_zero_pips" {{"checked" if form.host_view.data == "one_main_zero_pips"}} />
+       <label class="drinkcard-cc one_main_zero_pips" for="one_main_zero_pips"></label>
+       <input id="one_main_seven_pips" type="radio" name="host_view" value="one_main_seven_pips" {{"checked" if form.host_view.data == "one_main_seven_pips"}} />
+       <label class="drinkcard-cc one_main_seven_pips"for="one_main_seven_pips"></label>
+     </div>
+   </div>
+  </form>
+ </div>
+{% endblock %}

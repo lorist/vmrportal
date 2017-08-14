@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Pexip VMR Portal</title>
+
+		<link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet" media="screen">
+
+		<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/cover.css') }}">
+
+  </head>
+
+  <body>
+
+    <div class="site-wrapper">
+
+      <div class="site-wrapper-inner">
+
+        <div class="cover-container">
+
+
+
+          <div class="inner cover">
+            <h1 class="cover-heading">Virtual Meeting Room Self-Service Portal</h1>
+            <p class="lead">	This portal allows you to manage your Pexip Virtual Meeting Rooms (VMR), devices and clients.</p>
+						<div class="lead">
+							{% if error %}<p class=error><strong>Error:</strong> {{ error }}{% endif %}
+				      <form action="" method="post" name="login" role="form" class="form-signin">
+				        <h2 class="form-signin-heading">Please sign in</h2>
+					        {{ form.hidden_tag() }}
+									<label for="inputEmail" class="sr-only">Username</label>
+					        <input name="user" type="text" class="form-control" placeholder="Username" required autofocus>
+					        <label for="inputPassword" class="sr-only">Password</label>
+					        <input name="passwd" type="password" class="form-control" placeholder="Password" required>
+				        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+				      </form>
+
+				    </div>
+
+          <div class="mastfoot">
+            <div class="inner">
+              <p>Example portal for <a href="https://pexip.com">Pexip</a>.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+		<script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+
+		<!-- Bootstrap Core JavaScript -->
+		<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/ie10-viewport-bug-workaround.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <!-- <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js{{ url_for('static', filename='js/jquery.min.js') }}"><\/script>')</script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <!-- <script src="../../dist/js/bootstrap.min.js"></script> -->
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <!-- <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script> -->
+  </body>
+</html>
