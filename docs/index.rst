@@ -8,8 +8,9 @@ Welcome to Pexip VMR Portal's documentation!
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
 
+   installation
+   files
 
 
 Indices and tables
