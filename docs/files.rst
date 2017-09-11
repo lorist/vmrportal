@@ -8,6 +8,14 @@ Config
 The main configuration file is the ``config.py`` file. This file contains the configuration parameters that the main
 application uses.
 
+Edit the file:
+
+     ::
+
+          nano ~/vmrportal/config.py
+          
+
+
 config.py::
 
           ######################################
