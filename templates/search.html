@@ -1,0 +1,47 @@
+<!-- extend base layout -->
+{% extends "layout.html" %}
+{% block content %}
+
+<!-- query=query, vmr_results=vmr_results, vmr_results_meta=vmr_results_meta -->
+<div class="col-md-10 container">
+  {% if vmr_results %}
+  <div class="tab-content">
+    <h4>Total matches: {{vmr_results_meta['total_count']}}</h4>
+    <table class="table table-sm table-inverse">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Guest PIN</th>
+          <th>Click to join</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for dict_item in vmr_results %}
+        <tr>
+          <th scope="row">{{dict_item['name']}}</th>
+          <td>{{dict_item['guest_pin']}}</td>
+          <td>
+                {% for alias in dict_item.aliases %}
+                {% if '@' in alias.alias and loop.index == 1%}
+                  <a href="https://{{config.WEBRTC_FQDN}}/webapp/?conference={{alias.alias}}"><i class="fa fa-chrome" aria-hidden="true"></i>&nbsp;WebRTC&nbsp;&nbsp;&nbsp;</a>
+                  <a href="sip:{{alias.alias}}"><i class="fa fa-skype" aria-hidden="true"></i>&nbsp;Skype&nbsp;&nbsp;&nbsp;</a>
+                  <a href="pexip:{{alias.alias}}"><i class="fa fa-mobile" aria-hidden="true"></i>&nbsp;Pexip APP</a>
+                {% endif %}
+                {% if alias.alias|int %}
+                  <br /><a href="tel:{{config.PHONE_VR}},,{{alias.alias}}"><i class="fa fa-phone" aria-hidden="true"></i>&nbsp;Phone: {{config.PHONE_VR}} then enter {{alias.alias}} #</a>
+                {% endif %}
+                {% endfor %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+  <h4>No conferences found</h4>
+  <form action="/portal">
+    <button type="submit" class="btn btn-primary"><i class="fa fa-home fa-fw" aria-hidden="true"></i> Home</button>
+  </form>
+  {% endif %}
+</div>
+{% endblock %}
