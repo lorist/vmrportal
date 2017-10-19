@@ -1,0 +1,34 @@
+<!-- extend base layout -->
+{% extends "layout.html" %}
+{% block content %}
+<div class="col-md-1">
+  {%if thumbnailstring %}<img src="data:image/png;base64,{{thumbnailstring}}" width="70">{% endif %} <h4>{{user|capitalize}}</h4>
+</div>
+<div class="col-md-4 container">
+  <h3>My device password:</h3>
+  <form action="" method="post" name="editdevice">
+      {{form.hidden_tag()}}
+      {% if error %}
+      <p class=error><strong>Error:</strong> {{ error }}
+    {% endif %}
+  <table class="table-responsive">
+    <thead>
+        <tr>
+            <th>Password</th>
+        <tr>
+    </thead>
+    <tbody>
+
+      <tr>
+          <td>{{ form.password }}</td>
+      </tr>
+      <tr><td><input type="submit" value="Save Changes"></td></tr>
+      <tr><td><i>Note: it can take up to a minute for changes to take effect.</i></td></tr>
+
+    </tbody>
+</table>
+</p>
+</form>
+</div>
+
+{% endblock %}
