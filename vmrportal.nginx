@@ -1,0 +1,34 @@
+# HTTPS server
+#
+server {
+        listen 443;
+        server_name portal.pextest.com 10.63.225.33;
+
+        root html;
+        index index.html index.htm;
+
+        ssl on;
+        ssl_certificate ssl/cert.pem;
+        ssl_certificate_key ssl/cert.key;
+
+        ssl_session_timeout 5m;
+
+        ssl_protocols SSLv3 TLSv1 TLSv1.1 TLSv1.2;
+        ssl_ciphers "HIGH:!aNULL:!MD5 or HIGH:!aNULL:!MD5:!3DES";
+        ssl_prefer_server_ciphers on;
+
+        location / {
+            return 301 /portal;
+            }
+        location /static {
+            alias /home/pexip/vmrportal/static;
+            }
+        location /portal { try_files $uri @yourapplication; }
+
+        location @yourapplication {
+            include uwsgi_params;
+            uwsgi_pass unix:///home/pexip/vmrportal/portal.sock;
+            access_log /var/log/nginx/portal.access.log;
+            error_log /var/log/nginx/portal.error.log;
+        }
+}
